@@ -117,10 +117,14 @@ public class TankFrame extends Frame{
 
 		private void setClientTankDir() {
 			
-			if (left) myTank.setDir(Direction.LEFT);
-			if (right) myTank.setDir(Direction.RIGHT);
-			if (up) myTank.setDir(Direction.UP);
-			if (down) myTank.setDir(Direction.DOWN);
+			if (!left && !right && !up && !down) myTank.setMoving(false);	//没有按下方向键，坦克静止
+			else {
+				myTank.setMoving(true);	//按下方向键，坦克移动
+				if (left) myTank.setDir(Direction.LEFT);
+				if (right) myTank.setDir(Direction.RIGHT);
+				if (up) myTank.setDir(Direction.UP);
+				if (down) myTank.setDir(Direction.DOWN);
+			}
 			
 		}
 		
