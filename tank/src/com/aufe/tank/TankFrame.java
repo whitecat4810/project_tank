@@ -9,6 +9,10 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame{
 
+	int x = 200, y = 200;
+	Direction dir = Direction.DOWN;
+	private static final int SPEED = 10;
+	
 	public TankFrame() {
 		
 		setVisible(true);	//设置窗口可见
@@ -34,6 +38,25 @@ public class TankFrame extends Frame{
 	@Override
 	public void paint(Graphics g) {
 		
+		g.fillRect(x, y, 50, 50);
+		
+		switch (dir) {
+			case LEFT:
+				x -= SPEED;
+				break;
+			case UP:
+				y -= SPEED;
+				break;
+			case RIGHT:
+				x += SPEED;
+				break;
+			case DOWN:
+				y += SPEED;
+				break;
+	
+			default:
+				break;
+		}
 		
 	}
 	
@@ -45,11 +68,41 @@ public class TankFrame extends Frame{
 	class KeyListener extends KeyAdapter {
 
 		/**
+		 * 方向键按下判断
+		 */
+		boolean left = false;
+		boolean right = false;
+		boolean up = false;
+		boolean down = false;
+		
+		/**
 		 * 按下键盘事件监听
 		 */
 		@Override
 		public void keyPressed(KeyEvent e) {
-			System.out.println("dd");
+			
+			int key = e.getKeyCode();
+			
+			switch (key) {
+				case KeyEvent.VK_LEFT:
+					left = true;
+					break;
+				case KeyEvent.VK_RIGHT:
+					right = true;
+					break;
+				case KeyEvent.VK_UP:
+					up = true;
+					break;
+				case KeyEvent.VK_DOWN:
+					down = true;
+					break;
+	
+				default:
+					break;
+			}
+			
+			setClientTankDir();
+			
 		}
 		
 		/**
@@ -57,9 +110,39 @@ public class TankFrame extends Frame{
 		 */
 		@Override
 		public void keyReleased(KeyEvent e) {
-			System.out.println("aa");
+			
+			int key = e.getKeyCode();
+			
+			switch (key) {
+			case KeyEvent.VK_LEFT:
+				left = false;
+				break;
+			case KeyEvent.VK_RIGHT:
+				right = false;
+				break;
+			case KeyEvent.VK_UP:
+				up = false;
+				break;
+			case KeyEvent.VK_DOWN:
+				down = false;
+				break;
+
+			default:
+				break;
+			}
+			
+			setClientTankDir();
+			
 		}
-		
+
+		private void setClientTankDir() {
+			
+			if (left) dir = Direction.LEFT;
+			if (right) dir = Direction.RIGHT;
+			if (up) dir = Direction.UP;
+			if (down) dir = Direction.DOWN;
+			
+		}
 		
 	}
 	
