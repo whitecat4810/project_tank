@@ -1,7 +1,9 @@
 package com.aufe.tank;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -9,6 +11,8 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame{
 
+	private static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;	//设置游戏窗口大小
+	
 	Tank myTank = new Tank(200, 200, Direction.DOWN);	//创建我方坦克
 	Bullet myBullet = new Bullet(300, 300, Direction.DOWN);	//创建我方坦克子弹
 	
@@ -16,7 +20,7 @@ public class TankFrame extends Frame{
 		
 		setVisible(true);	//设置窗口可见
 		setResizable(false);	//设置不可改变窗口大小
-		setSize(800, 600);	//设置窗口宽度800px 长度600px
+		setSize(GAME_WIDTH, GAME_HEIGHT);	//设置窗口宽度800px 长度600px
 		setTitle("Tanks War");	//设置标题
 		
 		this.addKeyListener(new KeyListener());	//创建键盘监听
@@ -132,6 +136,26 @@ public class TankFrame extends Frame{
 		
 	}
 	
+	/**
+	 * 双缓冲解决闪屏
+	 */
+	Image offScreenImage = null;
+	@Override
+	public void update(Graphics g) {
+		
+		if (offScreenImage == null) {
+			offScreenImage = this.createImage(GAME_WIDTH,GAME_HEIGHT);
+		}
+		
+		Graphics gOffScreen = offScreenImage.getGraphics();
+		Color c = gOffScreen.getColor();
+		gOffScreen.setColor(Color.BLACK);
+		gOffScreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		gOffScreen.setColor(c);
+		paint(gOffScreen);
+		g.drawImage(offScreenImage, 0, 0, null);
+		
+	}
 	
 	
 }
