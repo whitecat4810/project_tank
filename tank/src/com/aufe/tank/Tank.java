@@ -6,7 +6,7 @@ public class Tank {
 	
 	private int x, y;	//坦克位置
 	private Direction dir = Direction.DOWN;	//坦克方向
-	private static final int SPEED = 10;	//坦克速度
+	private static final int SPEED = 5;	//坦克速度
 	private boolean moving = false;	//坦克是否移动
 	
 	/**
