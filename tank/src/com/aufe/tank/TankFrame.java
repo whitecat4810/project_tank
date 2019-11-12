@@ -8,13 +8,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankFrame extends Frame{
 
-	private static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;	//设置游戏窗口大小
-	
+	public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;	//设置游戏窗口大小
+	List<Bullet> bullets = new ArrayList<>();	//创建子弹容器
 	Tank myTank = new Tank(200, 200, Direction.DOWN, this);	//创建我方坦克
-	Bullet myBullet = new Bullet(300, 300, Direction.DOWN);	//创建我方坦克子弹
 	
 	public TankFrame() {
 		
@@ -41,8 +42,15 @@ public class TankFrame extends Frame{
 	@Override
 	public void paint(Graphics g) {
 		
+		Color color = g.getColor();
+		g.setColor(Color.WHITE);
+		g.drawString("子弹数量" + bullets.size(), 10, 60);
+		g.setColor(color);
+		
 		myTank.paint(g);
-		myBullet.paint(g);
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).paint(g);
+		}
 		
 	}
 	

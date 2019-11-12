@@ -56,7 +56,7 @@ public class Tank {
 	 * 坦克开火
 	 */
 	public void fire() {
-		frame.myBullet = new Bullet(this.x, this.y, this.dir);
+		frame.bullets.add(new Bullet(this.x, this.y, this.dir, frame));
 	}
 	
 	public Direction getDir() {
