@@ -9,9 +9,7 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame{
 
-	int x = 200, y = 200;
-	Direction dir = Direction.DOWN;
-	private static final int SPEED = 10;
+	Tank myTank = new Tank(200, 200, Direction.DOWN);	//创建我方坦克
 	
 	public TankFrame() {
 		
@@ -38,25 +36,7 @@ public class TankFrame extends Frame{
 	@Override
 	public void paint(Graphics g) {
 		
-		g.fillRect(x, y, 50, 50);
-		
-		switch (dir) {
-			case LEFT:
-				x -= SPEED;
-				break;
-			case UP:
-				y -= SPEED;
-				break;
-			case RIGHT:
-				x += SPEED;
-				break;
-			case DOWN:
-				y += SPEED;
-				break;
-	
-			default:
-				break;
-		}
+		myTank.paint(g);
 		
 	}
 	
@@ -137,10 +117,10 @@ public class TankFrame extends Frame{
 
 		private void setClientTankDir() {
 			
-			if (left) dir = Direction.LEFT;
-			if (right) dir = Direction.RIGHT;
-			if (up) dir = Direction.UP;
-			if (down) dir = Direction.DOWN;
+			if (left) myTank.setDir(Direction.LEFT);
+			if (right) myTank.setDir(Direction.RIGHT);
+			if (up) myTank.setDir(Direction.UP);
+			if (down) myTank.setDir(Direction.DOWN);
 			
 		}
 		
