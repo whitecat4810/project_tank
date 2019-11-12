@@ -9,6 +9,7 @@ public class Tank {
 	private Direction dir = Direction.DOWN;	//坦克方向
 	private static final int SPEED = 5;	//坦克速度
 	private boolean moving = false;	//坦克是否移动
+	private	TankFrame frame;	//创建坦克的引用(组合模式)
 	
 	/**
 	 * 构造坦克
@@ -51,6 +52,13 @@ public class Tank {
 		
 	}
 
+	/**
+	 * 坦克开火
+	 */
+	public void fire() {
+		frame.myBullet = new Bullet(this.x, this.y, this.dir);
+	}
+	
 	public Direction getDir() {
 		return dir;
 	}
@@ -67,11 +75,11 @@ public class Tank {
 		this.moving = moving;
 	}
 	
-	public Tank(int x, int y, Direction dir) {
-		super();
+	public Tank(int x, int y, Direction dir, TankFrame frame) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.frame = frame;
 	}
-	
+
 }
