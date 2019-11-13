@@ -20,6 +20,8 @@ public class Bullet {
 	private Team team = Team.HOS_FORCES;	//子弹默认为敌军子弹
 	private MainFrame frame = null;	//主框架的引用
 	
+	Rectangle rec = new Rectangle();
+	
 	/**
 	 * 创建子弹
 	 * @param g
@@ -75,6 +77,9 @@ public class Bullet {
 				break;
 		}
 		
+		rec.x = this.x;	//更新X的值
+		rec.y = this.y;	//更新Y的值
+		
 		if (x < 0 || y < 0 || 
 				x > MainFrame.GAME_WIDTH || y > MainFrame.GAME_HEIGHT) {
 			alive = false;
@@ -90,17 +95,13 @@ public class Bullet {
 		
 		if (this.team == tank.getTeam()) return;	//判断是否为友军，如果是，不必检测
 		
-		Rectangle rectB = new Rectangle(this.x, this.y, WIDTH, HEIGHT);	//构造矩形辅助类，用于碰撞检测
-		Rectangle rectT = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
-		
-		if (rectB.intersects(rectT)) {	//判断两图片是否相交
+		if (rec.intersects(rec)) {	//判断两图片是否相交
 			
 			tank.die();
 			this.explode();
 			
 			int explosionX = tank.getX() + Tank.WIDTH/2  - Explosion.WIDTH/2;	//计算子弹位置，将子弹放在坦克中心
 			int explosionY = tank.getY() + Tank.HEIGHT/2 - Explosion.HEIGHT/2;
-			
 			
 			frame.explosions.add(new Explosion(explosionX, explosionY, frame));
 			
@@ -128,6 +129,12 @@ public class Bullet {
 		this.dir = dir;
 		this.team = team;
 		this.frame = frame;
+		
+		rec.x = this.x;
+		rec.y = this.y;
+		rec.height = this.HEIGHT;
+		rec.width = this.WIDTH;
+		
 	}
 
 }

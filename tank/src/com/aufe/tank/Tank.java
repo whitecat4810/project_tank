@@ -1,8 +1,7 @@
 package com.aufe.tank;
 
-import static org.hamcrest.CoreMatchers.anything;
-
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Random;
 
 /**
@@ -23,6 +22,7 @@ public class Tank {
 	public static final int WIDTH = 
 			ResourceManager.friendlyTankD.getWidth(), 
 			HEIGHT = ResourceManager.friendlyTankD.getHeight();
+	Rectangle rec = new Rectangle();	
 	
 	/**
 	 * 构造坦克
@@ -30,8 +30,9 @@ public class Tank {
 	 */
 	public void paint(Graphics g) {
 		
-		if (!alive)   //判断坦克是否存活,如果不存活，移除该坦克
-			frame.enemies.remove(this);	
+		if (!alive) {
+			frame.enemies.remove(this);	//判断坦克是否存活,如果不存活，移除该坦克
+		}
 		
 		switch (dir) {
 		case LEFT:
@@ -84,14 +85,18 @@ public class Tank {
 				break;
 		}
 		
-		if (this.team == Team.HOS_FORCES && random.nextInt(100) > 95) 
+		if (this.team == Team.HOS_FORCES && random.nextInt(100) > 95) {
 			this.fire();	//敌方随机开火
+		}
 		
 		if (this.team == Team.HOS_FORCES && random.nextInt(100) > 96) {
 			randomDir();
 		}
 		
 		boundaryDet();
+		
+		rec.x = this.x;	//更新X的值
+		rec.y = this.y;	//更新Y的值
 		
 	}
 
@@ -100,12 +105,18 @@ public class Tank {
 	 */
 	private void boundaryDet() {
 		
-		if (this.x < 2 ) x = 2;	//不设为0，留出一点边界，美观
-		if (this.y < 28) y = 28;
-		if (this.x > MainFrame.GAME_WIDTH - Tank.WIDTH - 2) 
+		if (this.x < 2 ) {	//不设为0，留出一点边界，美观
+			x = 2;
+		}	
+		if (this.y < 28) {
+			y = 28;
+		}
+		if (this.x > MainFrame.GAME_WIDTH - Tank.WIDTH - 2) {
 			x = MainFrame.GAME_WIDTH - Tank.WIDTH - 2;
-		if (this.y > MainFrame.GAME_HEIGHT - Tank.HEIGHT - 2) 
+		}
+		if (this.y > MainFrame.GAME_HEIGHT - Tank.HEIGHT - 2) {
 			y = MainFrame.GAME_HEIGHT - Tank.HEIGHT - 2;
+		}
 			
 	}
 
@@ -185,6 +196,12 @@ public class Tank {
 		this.dir = dir;
 		this.team = team;
 		this.frame = frame;
+		
+		rec.x = this.x;
+		rec.y = this.y;
+		rec.height = this.HEIGHT;
+		rec.width = this.WIDTH;
+		
 	}
 
 }
