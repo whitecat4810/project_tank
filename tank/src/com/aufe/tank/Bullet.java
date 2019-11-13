@@ -18,7 +18,7 @@ public class Bullet {
 			HEIGHT = ResourceManager.bulletD.getHeight(); //子弹高度宽度
 	private Direction dir;	//子弹方向
 	private Team team = Team.HOS_FORCES;	//子弹默认为敌军子弹
-	private MainFrame frame;	//主框架的引用
+	private MainFrame frame = null;	//主框架的引用
 	
 	/**
 	 * 创建子弹

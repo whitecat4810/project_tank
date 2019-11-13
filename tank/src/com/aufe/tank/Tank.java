@@ -12,7 +12,7 @@ public class Tank {
 	
 	private int x, y;	//坦克位置
 	private static final int SPEED = 2;	//坦克速度
-	private boolean moving = true;	//坦克是否移动
+	private boolean moving = false;	//坦克是否移动
 	private boolean alive = true;	//坦克是否存活
 	private Direction dir = Direction.UP;	//坦克方向
 	private Team team = Team.HOS_FORCES;	//坦克默认为敌军

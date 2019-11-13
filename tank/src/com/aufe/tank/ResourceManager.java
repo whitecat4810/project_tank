@@ -15,10 +15,14 @@ public class ResourceManager {
 	public static BufferedImage tankL, tankU, tankR, tankD;
 	public static BufferedImage bulletL, bulletR, bulletU, bulletD;
 	//public static BufferedImage bulletA;
+	public static BufferedImage[] explosions = new BufferedImage[16];
 	
 	static {
 		
 		try {
+			/**
+			 * 加载坦克图片
+			 */
 			tankL = ImageIO.read(ResourceManager.class.getClassLoader()
 					.getResourceAsStream("images/tankL.gif"));
 			tankU = ImageIO.read(ResourceManager.class.getClassLoader()
@@ -28,6 +32,9 @@ public class ResourceManager {
 			tankD = ImageIO.read(ResourceManager.class.getClassLoader()
 					.getResourceAsStream("images/tankD.gif"));
 			
+			/**
+			 * 加载子弹图片
+			 */
 			bulletL = ImageIO.read(ResourceManager.class.getClassLoader()
 					.getResourceAsStream("images/bulletL.gif"));
 			bulletU = ImageIO.read(ResourceManager.class.getClassLoader()
@@ -38,6 +45,14 @@ public class ResourceManager {
 					.getResourceAsStream("images/bulletD.gif"));
 			//bulletA = ImageIO.read(ResourceManager.class.getClassLoader()
 				//	.getResourceAsStream("images/bulletA.png"));
+			
+			/**
+			 * 加载爆炸图片
+			 */
+			for (int i = 0; i < 16; i++) {
+				explosions[i] = ImageIO.read(ResourceManager.class.getClassLoader()
+						.getResourceAsStream("images/e" + (i+1) + ".gif"));
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
