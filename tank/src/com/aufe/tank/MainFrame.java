@@ -115,7 +115,9 @@ public class MainFrame extends Frame{
 					break;
 			}
 			
-			setClientTankDir();
+			setClientTankDir();	 // 设置坦克移动方向
+			
+			new Thread(()->new Audio("audio/tank_move.wav").play()).start();	//播放坦克移动音乐
 			
 		}
 		

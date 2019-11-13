@@ -19,6 +19,8 @@ public class Main {
 					Direction.DOWN, Team.HOS_FORCES, frame));
 		}
 		
+		//new Thread(()->new Audio("audio/bgwar.wav").loop()).start();;
+		
 		while (true) {
 			Thread.sleep(50);
 			frame.repaint();

@@ -34,6 +34,9 @@ public class Explosion {
 		this.x = x;
 		this.y = y;
 		this.frame = frame;
+		
+		//new Thread(()->new Audio("audio/explode.wav").loop()).start();	//爆炸音效
+		
 	}
 
 }

@@ -23,26 +23,20 @@ public class ResourceManager {
 			/**
 			 * 加载坦克图片
 			 */
-			tankL = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/tankL.gif"));
 			tankU = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/tankU.gif"));
-			tankR = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/tankR.gif"));
-			tankD = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/tankD.gif"));
+					.getResourceAsStream("images/friendlyForces1.png"));
+			tankL = ImageUtil.rotateImage(tankU, -90);
+			tankR = ImageUtil.rotateImage(tankU, 90);
+			tankD = ImageUtil.rotateImage(tankU, 180);
 			
 			/**
 			 * 加载子弹图片
 			 */
-			bulletL = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/bulletL.gif"));
 			bulletU = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/bulletU.gif"));
-			bulletR = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/bulletR.gif"));
-			bulletD = ImageIO.read(ResourceManager.class.getClassLoader()
-					.getResourceAsStream("images/bulletD.gif"));
+					.getResourceAsStream("images/bulletU.png"));
+			bulletL = ImageUtil.rotateImage(bulletU, -90);
+			bulletR = ImageUtil.rotateImage(bulletU, 90);
+			bulletD = ImageUtil.rotateImage(bulletU, 180);
 			//bulletA = ImageIO.read(ResourceManager.class.getClassLoader()
 				//	.getResourceAsStream("images/bulletA.png"));
 			

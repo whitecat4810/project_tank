@@ -12,7 +12,7 @@ public class Tank {
 	
 	private int x, y;	//坦克位置
 	private static final int SPEED = 2;	//坦克速度
-	private boolean moving = false;	//坦克是否移动
+	private boolean moving = true;	//坦克是否移动
 	private boolean alive = true;	//坦克是否存活
 	private Direction dir = Direction.UP;	//坦克方向
 	private Team team = Team.HOS_FORCES;	//坦克默认为敌军
@@ -48,6 +48,7 @@ public class Tank {
 		default:
 			break;
 		}
+		
 		move();
 		
 	}
@@ -90,6 +91,9 @@ public class Tank {
 		int bulletY = this.y + Tank.HEIGHT/2 + 8 - Bullet.HEIGHT;
 		
 		frame.bullets.add(new Bullet(bulletX, bulletY, this.dir, this.team, frame));
+		
+		//new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
+		
 	}
 	
 	/**
