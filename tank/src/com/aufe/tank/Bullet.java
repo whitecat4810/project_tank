@@ -3,6 +3,11 @@ package com.aufe.tank;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * 子弹类
+ * @author whitecat
+ *
+ */
 public class Bullet {
 	
 	private int x, y;	//子弹位置
@@ -12,7 +17,8 @@ public class Bullet {
 			ResourceManager.bulletD.getWidth(), 
 			HEIGHT = ResourceManager.bulletD.getHeight(); //子弹高度宽度
 	private Direction dir;	//子弹方向
-	private TankFrame frame;	//主框架的引用
+	private Team team = Team.HOS_FORCES;	//子弹默认为敌军子弹
+	private MainFrame frame;	//主框架的引用
 	
 	/**
 	 * 创建子弹
@@ -70,17 +76,19 @@ public class Bullet {
 		}
 		
 		if (x < 0 || y < 0 || 
-				x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+				x > MainFrame.GAME_WIDTH || y > MainFrame.GAME_HEIGHT) {
 			alive = false;
 		}
 		
 	}
 
 	/**
-	 * 碰撞检测
+	 * 子弹与坦克的碰撞检测
 	 * @param tank
 	 */
 	public void crash(Tank tank) {
+		
+		if (this.team == tank.getTeam()) return;	//判断是否为友军，如果是，不必检测
 		
 		Rectangle rectB = new Rectangle(this.x, this.y, WIDTH, HEIGHT);	//构造矩形辅助类，用于碰撞检测
 		Rectangle rectT = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
@@ -98,10 +106,19 @@ public class Bullet {
 		this.alive = false;
 	}
 
-	public Bullet(int x, int y, Direction dir, TankFrame frame) {
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public Bullet(int x, int y, Direction dir, Team team, MainFrame frame) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.team = team;
 		this.frame = frame;
 	}
 

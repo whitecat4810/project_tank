@@ -1,15 +1,22 @@
 package com.aufe.tank;
 
+/**
+ * 程序入口
+ * @author whitecat
+ *
+ */
 public class Main {
+	
 	public static void main(String[] args) throws InterruptedException {
 		
-		TankFrame frame = new TankFrame();
+		MainFrame frame = new MainFrame();
 		
 		/**
 		 * 初始化敌方tank
 		 */
 		for (int i = 0; i < 5; i++) {
-			frame.enemies.add(new Tank(100 + i*130, 50, Direction.DOWN,frame));
+			frame.enemies.add(new Tank(100 + i*130, 50, 
+					Direction.DOWN, Team.HOS_FORCES, frame));
 		}
 		
 		while (true) {
@@ -18,4 +25,5 @@ public class Main {
 		}
 		
 	}
+	
 }

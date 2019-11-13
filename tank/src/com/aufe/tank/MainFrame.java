@@ -11,14 +11,19 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TankFrame extends Frame{
+/**
+ * 项目主体框架
+ * @author whitecat
+ *
+ */
+public class MainFrame extends Frame{
 
 	public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;	//设置游戏窗口大小
 	List<Bullet> bullets = new ArrayList<>();	//创建子弹容器
 	List<Tank> enemies = new ArrayList<>();	//创建敌方坦克容器
-	Tank myTank = new Tank(300, 400, Direction.UP, this);	//创建我方坦克
+	Tank myTank = new Tank(300, 400, Direction.UP, Team.FRI_FORCES, this);	//创建我方坦克
 	
-	public TankFrame() {
+	public MainFrame() {
 		
 		setVisible(true);	//设置窗口可见
 		setResizable(false);	//设置不可改变窗口大小

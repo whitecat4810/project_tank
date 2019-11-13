@@ -1,15 +1,23 @@
 package com.aufe.tank;
 
 import java.awt.Graphics;
+import java.util.Random;
 
+/**
+ * 坦克类
+ * @author whitecat
+ *
+ */
 public class Tank {
 	
 	private int x, y;	//坦克位置
-	private static final int SPEED = 5;	//坦克速度
-	private boolean moving = false;	//坦克是否移动
+	private static final int SPEED = 2;	//坦克速度
+	private boolean moving = true;	//坦克是否移动
 	private boolean alive = true;	//坦克是否存活
 	private Direction dir = Direction.UP;	//坦克方向
-	private	TankFrame frame;	//创建坦克的引用(组合模式)
+	private Team team = Team.HOS_FORCES;	//坦克默认为敌军
+	private	MainFrame frame;	//创建坦克的引用(组合模式)
+	private Random random = new Random();	//敌方tank随机数
 	public static final int WIDTH = 
 			ResourceManager.tankD.getWidth(), 
 			HEIGHT = ResourceManager.tankD.getHeight();
@@ -69,6 +77,8 @@ public class Tank {
 				break;
 		}
 		
+		if (random.nextInt(10) > 8)  this.fire();
+		
 	}
 
 	/**
@@ -79,7 +89,7 @@ public class Tank {
 		int bulletX = this.x + Tank.WIDTH/2 + 5 - Bullet.WIDTH;	//计算子弹位置，将子弹放在坦克中心
 		int bulletY = this.y + Tank.HEIGHT/2 + 8 - Bullet.HEIGHT;
 		
-		frame.bullets.add(new Bullet(bulletX, bulletY, this.dir, frame));
+		frame.bullets.add(new Bullet(bulletX, bulletY, this.dir, this.team, frame));
 	}
 	
 	/**
@@ -89,6 +99,14 @@ public class Tank {
 		this.alive = false;
 	}
 	
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
 	public Direction getDir() {
 		return dir;
 	}
@@ -121,10 +139,11 @@ public class Tank {
 		this.y = y;
 	}
 
-	public Tank(int x, int y, Direction dir, TankFrame frame) {
+	public Tank(int x, int y, Direction dir, Team team, MainFrame frame) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.team = team;
 		this.frame = frame;
 	}
 

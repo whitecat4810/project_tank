@@ -5,6 +5,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 静态资源管理类
+ * @author whitecat
+ *
+ */
 public class ResourceManager {
 	
 	public static BufferedImage tankL, tankU, tankR, tankD;
