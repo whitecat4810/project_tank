@@ -101,8 +101,8 @@ public class Tank {
 	 */
 	public void fire() {
 		
-		int bulletX = this.x + Tank.WIDTH/2 + 5 - Bullet.WIDTH;	//计算子弹位置，将子弹放在坦克中心
-		int bulletY = this.y + Tank.HEIGHT/2 + 8 - Bullet.HEIGHT;
+		int bulletX = this.x + Tank.WIDTH/2 + 15 - Bullet.WIDTH;	//计算子弹位置，将子弹放在坦克中心
+		int bulletY = this.y + Tank.HEIGHT/2 + 15 - Bullet.HEIGHT;
 		
 		frame.bullets.add(new Bullet(bulletX, bulletY, this.dir, this.team, frame));
 		

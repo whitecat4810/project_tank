@@ -94,9 +94,16 @@ public class Bullet {
 		Rectangle rectT = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
 		
 		if (rectB.intersects(rectT)) {	//判断两图片是否相交
+			
 			tank.die();
 			this.explode();
-			frame.explosions.add(new Explosion(x, y, frame));
+			
+			int explosionX = tank.getX() + Tank.WIDTH/2  - Explosion.WIDTH/2;	//计算子弹位置，将子弹放在坦克中心
+			int explosionY = tank.getY() + Tank.HEIGHT/2 - Explosion.HEIGHT/2;
+			
+			
+			frame.explosions.add(new Explosion(explosionX, explosionY, frame));
+			
 		}
 	}
 	
