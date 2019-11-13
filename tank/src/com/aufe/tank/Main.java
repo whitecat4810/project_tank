@@ -7,14 +7,16 @@ package com.aufe.tank;
  */
 public class Main {
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		
 		MainFrame frame = new MainFrame();
+		
+		int initTankCount = Integer.parseInt((String) PropertyManager.getKey("initTankCount"));
 		
 		/**
 		 * 初始化敌方tank
 		 */
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < initTankCount; i++) {
 			frame.enemies.add(new Tank(100 + i*130, 50, 
 					Direction.DOWN, Team.HOS_FORCES, frame));
 		}
@@ -22,7 +24,11 @@ public class Main {
 //		new Thread(()->new Audio("audio/bgwar.wav").loop()).start();;
 		
 		while (true) {
-			Thread.sleep(50);
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			frame.repaint();
 		}
 		

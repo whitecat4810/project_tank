@@ -19,8 +19,7 @@ public class Bullet {
 	private Direction dir;	//子弹方向
 	private Team team = Team.HOS_FORCES;	//子弹默认为敌军子弹
 	private MainFrame frame = null;	//主框架的引用
-	
-	Rectangle rec = new Rectangle();
+	Rectangle rec = new Rectangle();	//碰撞检测辅助类
 	
 	/**
 	 * 创建子弹
@@ -93,7 +92,7 @@ public class Bullet {
 	 */
 	public void crash(Tank tank) {
 		
-		if (this.team == tank.getTeam()) return;	//判断是否为友军，如果是，不必检测
+		if (this.team == tank.getTeam()) return;	//判断是否为自身所在Team，如果是，不必检测
 		
 		if (rec.intersects(rec)) {	//判断两图片是否相交
 			

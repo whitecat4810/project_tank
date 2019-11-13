@@ -59,6 +59,7 @@ public class MainFrame extends Frame{
 		g.setColor(color);
 		
 		myTank.paint(g);	//画己方坦克
+		
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(g);	//画子弹
 		}
@@ -161,13 +162,26 @@ public class MainFrame extends Frame{
 
 		private void setClientTankDir() {
 			
-			if (!left && !right && !up && !down) myTank.setMoving(false);	//没有按下方向键，坦克静止
+			if (!left && !right && !up && !down) {
+				myTank.setMoving(false);	//没有按下方向键，坦克静止
+			}
 			else {
+				
 				myTank.setMoving(true);	//按下方向键，坦克移动
-				if (left) myTank.setDir(Direction.LEFT);
-				if (right) myTank.setDir(Direction.RIGHT);
-				if (up) myTank.setDir(Direction.UP);
-				if (down) myTank.setDir(Direction.DOWN);
+				
+				if (left) {
+					myTank.setDir(Direction.LEFT);
+				}
+				if (right) {
+					myTank.setDir(Direction.RIGHT);
+				}
+				if (up) {
+					myTank.setDir(Direction.UP);
+				}
+				if (down) {
+					myTank.setDir(Direction.DOWN);
+				}
+				
 			}
 			
 		}

@@ -13,16 +13,16 @@ public class Tank {
 	
 	private int x, y;	//坦克位置
 	private static final int SPEED = 10;	//坦克速度
-	private boolean moving = true;	//坦克是否移动
+	private boolean moving = false;	//坦克是否移动
 	private boolean alive = true;	//坦克是否存活
 	private Direction dir = Direction.UP;	//坦克方向
-	private Team team = Team.HOS_FORCES;	//坦克默认为敌军
-	private	MainFrame frame;	//创建坦克的引用(组合模式)
+	private Team team = Team.HOS_FORCES;	//坦克从属方
+	private	MainFrame frame = null;	//创建坦克的引用(组合模式)
 	private Random random = new Random();	//敌方tank随机数
 	public static final int WIDTH = 
 			ResourceManager.friendlyTankD.getWidth(), 
 			HEIGHT = ResourceManager.friendlyTankD.getHeight();
-	Rectangle rec = new Rectangle();	
+	Rectangle rec = new Rectangle();	//碰撞检测辅助类	
 	
 	/**
 	 * 构造坦克
@@ -90,10 +90,10 @@ public class Tank {
 		}
 		
 		if (this.team == Team.HOS_FORCES && random.nextInt(100) > 96) {
-			randomDir();
+			randomDir();	//敌方随机移动
 		}
 		
-		boundaryDet();
+		boundaryDet();	//边界检测
 		
 		rec.x = this.x;	//更新X的值
 		rec.y = this.y;	//更新Y的值
