@@ -1,17 +1,18 @@
 package com.aufe.tank;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Bullet {
 	
+	private int x, y;	//子弹位置
+	private boolean alive = true;	//子弹是否出界/爆炸,true为未出界
 	private static final int SPEED = 10; //子弹速度
 	public static final int WIDTH = 
 			ResourceManager.bulletD.getWidth(), 
 			HEIGHT = ResourceManager.bulletD.getHeight(); //子弹高度宽度
-	private int x, y;	//子弹位置
 	private Direction dir;	//子弹方向
-	private boolean inside = true;	//子弹是否出界,true为未出界
-	private TankFrame frame;
+	private TankFrame frame;	//主框架的引用
 	
 	/**
 	 * 创建子弹
@@ -19,9 +20,8 @@ public class Bullet {
 	 */
 	public void paint(Graphics g) {
 		
-		if (!inside) {
+		if (!alive) 
 			frame.bullets.remove(this);
-		}
 		
 		switch (dir) {
 			case LEFT:
@@ -71,9 +71,31 @@ public class Bullet {
 		
 		if (x < 0 || y < 0 || 
 				x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
-			inside = false;
+			alive = false;
 		}
 		
+	}
+
+	/**
+	 * 碰撞检测
+	 * @param tank
+	 */
+	public void crash(Tank tank) {
+		
+		Rectangle rectB = new Rectangle(this.x, this.y, WIDTH, HEIGHT);	//构造矩形辅助类，用于碰撞检测
+		Rectangle rectT = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
+		
+		if (rectB.intersects(rectT)) {	//判断两图片是否相交
+			tank.die();
+			this.explode();
+		}
+	}
+	
+	/**
+	 * 子弹爆炸
+	 */
+	private void explode() {
+		this.alive = false;
 	}
 
 	public Bullet(int x, int y, Direction dir, TankFrame frame) {
@@ -82,5 +104,5 @@ public class Bullet {
 		this.dir = dir;
 		this.frame = frame;
 	}
-	
+
 }

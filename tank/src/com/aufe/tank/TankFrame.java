@@ -46,15 +46,22 @@ public class TankFrame extends Frame{
 		Color color = g.getColor();
 		g.setColor(Color.WHITE);
 		g.drawString("子弹数量" + bullets.size(), 10, 60);
+		g.drawString("敌方坦克数量" + enemies.size(), 10, 80);
 		g.setColor(color);
 		
-		myTank.paint(g);
+		myTank.paint(g);	//画己方坦克
 		for (int i = 0; i < bullets.size(); i++) {
-			bullets.get(i).paint(g);
+			bullets.get(i).paint(g);	//画子弹
 		}
 		
 		for (int i = 0; i < enemies.size(); i++) {
-			enemies.get(i).paint(g);
+			enemies.get(i).paint(g);	//画敌方坦克
+		}
+		
+		for (int i = 0; i < bullets.size(); i++) {
+			for (int j = 0; j < enemies.size(); j++) {
+				bullets.get(i).crash(enemies.get(j));
+			}
 		}
 		
 	}
