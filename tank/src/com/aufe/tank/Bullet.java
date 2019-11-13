@@ -1,16 +1,18 @@
 package com.aufe.tank;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Bullet {
 	
 	private static final int SPEED = 10; //子弹速度
-	private static final int WIDTH = 10, HEIGHT = 10; //子弹速度
+	public static final int WIDTH = 
+			ResourceManager.bulletD.getWidth(), 
+			HEIGHT = ResourceManager.bulletD.getHeight(); //子弹高度宽度
 	private int x, y;	//子弹位置
 	private Direction dir;	//子弹方向
 	private boolean inside = true;	//子弹是否出界,true为未出界
 	private TankFrame frame;
+	
 	/**
 	 * 创建子弹
 	 * @param g

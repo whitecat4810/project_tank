@@ -10,6 +10,10 @@ public class Tank {
 	private static final int SPEED = 5;	//坦克速度
 	private boolean moving = false;	//坦克是否移动
 	private	TankFrame frame;	//创建坦克的引用(组合模式)
+	public static final int WIDTH = 
+			ResourceManager.tankD.getWidth(), 
+			HEIGHT = ResourceManager.tankD.getHeight();
+	
 	
 	/**
 	 * 构造坦克
@@ -69,7 +73,11 @@ public class Tank {
 	 * 坦克开火
 	 */
 	public void fire() {
-		frame.bullets.add(new Bullet(this.x, this.y, this.dir, frame));
+		
+		int bulletX = this.x + Tank.WIDTH/2 + 5 - Bullet.WIDTH;
+		int bulletY = this.y + Tank.HEIGHT/2 + 8 - Bullet.HEIGHT;
+		
+		frame.bullets.add(new Bullet(bulletX, bulletY, this.dir, frame));
 	}
 	
 	public Direction getDir() {
