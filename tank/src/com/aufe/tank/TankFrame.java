@@ -15,7 +15,8 @@ public class TankFrame extends Frame{
 
 	public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;	//设置游戏窗口大小
 	List<Bullet> bullets = new ArrayList<>();	//创建子弹容器
-	Tank myTank = new Tank(200, 200, Direction.DOWN, this);	//创建我方坦克
+	List<Tank> enemies = new ArrayList<>();	//创建敌方坦克容器
+	Tank myTank = new Tank(300, 400, Direction.UP, this);	//创建我方坦克
 	
 	public TankFrame() {
 		
@@ -50,6 +51,10 @@ public class TankFrame extends Frame{
 		myTank.paint(g);
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(g);
+		}
+		
+		for (int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).paint(g);
 		}
 		
 	}
