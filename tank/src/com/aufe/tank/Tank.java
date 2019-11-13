@@ -1,5 +1,7 @@
 package com.aufe.tank;
 
+import static org.hamcrest.CoreMatchers.anything;
+
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -11,7 +13,7 @@ import java.util.Random;
 public class Tank {
 	
 	private int x, y;	//坦克位置
-	private static final int SPEED = 2;	//坦克速度
+	private static final int SPEED = 10;	//坦克速度
 	private boolean moving = true;	//坦克是否移动
 	private boolean alive = true;	//坦克是否存活
 	private Direction dir = Direction.UP;	//坦克方向
@@ -30,9 +32,6 @@ public class Tank {
 		
 		if (!alive)   //判断坦克是否存活,如果不存活，移除该坦克
 			frame.enemies.remove(this);	
-		
-		
-		
 		
 		switch (dir) {
 		case LEFT:
@@ -92,6 +91,22 @@ public class Tank {
 			randomDir();
 		}
 		
+		boundaryDet();
+		
+	}
+
+	/**
+	 * 边界检测 (boundary detection)
+	 */
+	private void boundaryDet() {
+		
+		if (this.x < 2 ) x = 2;	//不设为0，留出一点边界，美观
+		if (this.y < 28) y = 28;
+		if (this.x > MainFrame.GAME_WIDTH - Tank.WIDTH - 2) 
+			x = MainFrame.GAME_WIDTH - Tank.WIDTH - 2;
+		if (this.y > MainFrame.GAME_HEIGHT - Tank.HEIGHT - 2) 
+			y = MainFrame.GAME_HEIGHT - Tank.HEIGHT - 2;
+			
 	}
 
 	/**
