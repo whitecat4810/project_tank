@@ -26,7 +26,7 @@ public class Explosion {
 		
 		g.drawImage(ResourceManager.explosions[count++], x, y, null);
 		
-		if (count >= ResourceManager.explosions.length) count = 0;	
+		if (count >= ResourceManager.explosions.length) frame.explosions.remove(this);	
 		
 	}
 

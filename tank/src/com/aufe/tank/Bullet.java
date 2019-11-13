@@ -96,6 +96,7 @@ public class Bullet {
 		if (rectB.intersects(rectT)) {	//判断两图片是否相交
 			tank.die();
 			this.explode();
+			frame.explosions.add(new Explosion(x, y, frame));
 		}
 	}
 	

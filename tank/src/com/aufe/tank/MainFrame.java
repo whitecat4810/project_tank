@@ -22,8 +22,9 @@ public class MainFrame extends Frame{
 	
 	List<Bullet> bullets = new ArrayList<>();	//创建子弹容器
 	List<Tank> enemies = new ArrayList<>();	//创建敌方坦克容器
+	List<Explosion> explosions = new ArrayList<>();	//创建爆炸容器
+	
 	Tank myTank = new Tank(300, 400, Direction.UP, Team.FRI_FORCES, this);	//创建我方坦克
-	Explosion exp = new Explosion(100, 100, this);	
 	
 	public MainFrame() {
 		
@@ -54,6 +55,7 @@ public class MainFrame extends Frame{
 		g.setColor(Color.WHITE);
 		g.drawString("子弹数量" + bullets.size(), 10, 60);
 		g.drawString("敌方坦克数量" + enemies.size(), 10, 80);
+		g.drawString("爆炸数量" + explosions.size(), 10, 100);
 		g.setColor(color);
 		
 		myTank.paint(g);	//画己方坦克
@@ -65,13 +67,16 @@ public class MainFrame extends Frame{
 			enemies.get(i).paint(g);	//画敌方坦克
 		}
 		
+		for (int i = 0; i < explosions.size(); i++) {
+			explosions.get(i).paint(g);   //爆炸特效
+		}
+		
 		for (int i = 0; i < bullets.size(); i++) {
 			for (int j = 0; j < enemies.size(); j++) {
-				bullets.get(i).crash(enemies.get(j));
+				bullets.get(i).crash(enemies.get(j));	//碰撞
 			}
 		}
 		
-		exp.paint(g);
 	}
 	
 	/**
@@ -117,7 +122,7 @@ public class MainFrame extends Frame{
 			
 			setClientTankDir();	 // 设置坦克移动方向
 			
-			new Thread(()->new Audio("audio/tank_move.wav").play()).start();	//播放坦克移动音乐
+//			new Thread(()->new Audio("audio/tank_move.wav").play()).start();	//播放坦克移动音乐
 			
 		}
 		
