@@ -78,7 +78,21 @@ public class Tank {
 				break;
 		}
 		
-		if (random.nextInt(10) > 8)  this.fire();
+		if (this.team == Team.HOS_FORCES && random.nextInt(100) > 95) 
+			this.fire();	//敌方随机开火
+		
+		if (this.team == Team.HOS_FORCES && random.nextInt(100) > 96) {
+			randomDir();
+		}
+		
+	}
+
+	/**
+	 * 敌方随机开火
+	 */
+	private void randomDir() {
+		
+		this.dir = Direction.values()[random.nextInt(4)];	
 		
 	}
 
