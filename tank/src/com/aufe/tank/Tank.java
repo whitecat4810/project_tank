@@ -19,8 +19,8 @@ public class Tank {
 	private	MainFrame frame;	//创建坦克的引用(组合模式)
 	private Random random = new Random();	//敌方tank随机数
 	public static final int WIDTH = 
-			ResourceManager.tankD.getWidth(), 
-			HEIGHT = ResourceManager.tankD.getHeight();
+			ResourceManager.friendlyTankD.getWidth(), 
+			HEIGHT = ResourceManager.friendlyTankD.getHeight();
 	
 	/**
 	 * 构造坦克
@@ -31,18 +31,25 @@ public class Tank {
 		if (!alive)   //判断坦克是否存活,如果不存活，移除该坦克
 			frame.enemies.remove(this);	
 		
+		
+		
+		
 		switch (dir) {
 		case LEFT:
-			g.drawImage(ResourceManager.tankL, x, y, null);
+			g.drawImage(this.team == Team.FRI_FORCES? 
+					ResourceManager.friendlyTankL : ResourceManager.hostileTankL, x, y, null);
 			break;
 		case RIGHT:
-			g.drawImage(ResourceManager.tankR, x, y, null);
+			g.drawImage(this.team == Team.FRI_FORCES? 
+					ResourceManager.friendlyTankR : ResourceManager.hostileTankR, x, y, null);
 			break;
 		case UP:
-			g.drawImage(ResourceManager.tankU, x, y, null);
+			g.drawImage(this.team == Team.FRI_FORCES? 
+					ResourceManager.friendlyTankU : ResourceManager.hostileTankU, x, y, null);
 			break;
 		case DOWN:
-			g.drawImage(ResourceManager.tankD, x, y, null);
+			g.drawImage(this.team == Team.FRI_FORCES? 
+					ResourceManager.friendlyTankD : ResourceManager.hostileTankD, x, y, null);
 			break;
 
 		default:

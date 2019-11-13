@@ -12,7 +12,8 @@ import javax.imageio.ImageIO;
  */
 public class ResourceManager {
 	
-	public static BufferedImage tankL, tankU, tankR, tankD;
+	public static BufferedImage friendlyTankL, friendlyTankU, friendlyTankR, friendlyTankD;
+	public static BufferedImage hostileTankL, hostileTankU, hostileTankR, hostileTankD;
 	public static BufferedImage bulletL, bulletR, bulletU, bulletD;
 	//public static BufferedImage bulletA;
 	public static BufferedImage[] explosions = new BufferedImage[16];
@@ -21,13 +22,20 @@ public class ResourceManager {
 		
 		try {
 			/**
-			 * 加载坦克图片
+			 * 加载友军敌军坦克图片
 			 */
-			tankU = ImageIO.read(ResourceManager.class.getClassLoader()
+			friendlyTankU = ImageIO.read(ResourceManager.class.getClassLoader()
 					.getResourceAsStream("images/friendlyForces1.png"));
-			tankL = ImageUtil.rotateImage(tankU, -90);
-			tankR = ImageUtil.rotateImage(tankU, 90);
-			tankD = ImageUtil.rotateImage(tankU, 180);
+			friendlyTankL = ImageUtil.rotateImage(friendlyTankU, -90);
+			friendlyTankR = ImageUtil.rotateImage(friendlyTankU, 90);
+			friendlyTankD = ImageUtil.rotateImage(friendlyTankU, 180);
+			
+			hostileTankU = ImageIO.read(ResourceManager.class.getClassLoader()
+					.getResourceAsStream("images/hostileForces1.png"));
+			hostileTankL = ImageUtil.rotateImage(hostileTankU, -90);
+			hostileTankR = ImageUtil.rotateImage(hostileTankU, 90);
+			hostileTankD = ImageUtil.rotateImage(hostileTankU, 180);
+			
 			
 			/**
 			 * 加载子弹图片
